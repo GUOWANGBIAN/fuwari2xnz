@@ -49,23 +49,35 @@ const config = profileConfig;
     // 获取全站访问量统计
     async function loadSiteStats() {
         try {
-            const response = await fetch('https://umami-blog-api.afo.im/');
-            if (response.ok) {
-                const data = await response.text();
-                const statsElement = document.getElementById('site-stats');
-                if (statsElement && data) {
-                    // API返回格式为 xxx,yyy，其中xxx是浏览量，yyy是访问数
-                    const parts = data.trim().split(',');
-                    if (parts.length === 2) {
-                        const pageviews = parseInt(parts[0]) || 0;
-                        const visitors = parseInt(parts[1]) || 0;
-                        statsElement.textContent = `浏览量 ${pageviews} · 访问数 ${visitors}`;
-                    } else {
-                        statsElement.textContent = '数据格式错误';
-                    }
-                }
-            } else {
-                throw new Error('API请求失败');
+            // 第一步：获取网站ID和token
+            const shareResponse = await fetch('https://us.umami.is/api/share/7PoDRgCzHFTs2vWB');
+            if (!shareResponse.ok) {
+                throw new Error('获取分享信息失败');
+            }
+            const shareData = await shareResponse.json();
+            const { websiteId, token } = shareData;
+            
+            // 第二步：获取全站统计数据（不指定url参数获取全站数据）
+            const currentTimestamp = Date.now();
+            const statsUrl = `https://us.umami.is/api/websites/${websiteId}/stats?startAt=0&endAt=${currentTimestamp}&unit=hour&timezone=Asia%2FShanghai&compare=false`;
+            
+            const statsResponse = await fetch(statsUrl, {
+                 headers: {
+                     'x-umami-share-token': token
+                 }
+             });
+            
+            if (!statsResponse.ok) {
+                throw new Error('获取统计数据失败');
+            }
+            
+            const statsData = await statsResponse.json();
+            const pageviews = statsData.pageviews?.value || 0;
+            const visitors = statsData.visits?.value || 0;
+            
+            const statsElement = document.getElementById('site-stats');
+            if (statsElement) {
+                statsElement.textContent = `浏览量 ${pageviews} · 访问数 ${visitors}`;
             }
         } catch (error) {
             console.error('获取全站统计失败:', error);
