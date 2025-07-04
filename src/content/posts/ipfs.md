@@ -1,4 +1,5 @@
 ---
+
 category: 随笔
 description: IPFS是一个多节点的文件托管系统，你可以在上面共享文件、发布网站、而Fleek自动化了这个过程，并且可以链接你的Git存储库
 draft: false
@@ -6,10 +7,15 @@ image: https://sb-r2.afo.im/fuwari-blog/img/2024-10-17-09-55-55-image.webp
 lang: ''
 published: 2024-10-17
 tags:
+
 - Fleek
 - IPFS
-title: 使用基于IPFS的Fleek部署静态网站、托管图床、部署服务
+  title: 使用基于IPFS的Fleek部署静态网站、托管图床、部署服务
+
 ---
+
+> 本文过旧，某些资源可能已经不可用
+
 ### 什么是IPFS？
 
 > IPFS，是点到点的超媒体协议，它让网络更快、更安全、更开放。说简单一点，它就是一个去中心化互联网。说技术一点，它是一个基于分布式哈希表DHT进行内容寻址的，基于git模型版本管理的，基于默克尔对象关联的，基于点对点技术的，基于全球化命名空间IPNS的，基于各种技术的，一种分布式文件系统。
