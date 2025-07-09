@@ -44,6 +44,10 @@ description: 关于如何联系二叉树树~
 
 家里云使用IPv6+DDNS，EO回源v6域名+端口即可
 
+> 免费套餐限速吗？
+
+单线程512KB/s，多线程我能跑到最高72MB/s
+
 # 内网穿透相关
 
 > 我怎么看我是不是NAT1
@@ -64,4 +68,8 @@ Spaceship
 
 6-9位纯数字xyz，Spaceship买
 
-# 
+# Vercel相关
+
+>  私有仓库无法同步Git进行CI/CD。手动创建部署提示 A commit author is required ？
+
+之后的Git提交需要将用户名和邮箱皆设为Github的即可（让Vercel识别到你确实控制着这个仓库并且提交是由你提交的）
