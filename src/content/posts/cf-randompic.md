@@ -108,9 +108,9 @@ export default {
     let prefix = '';
     
     // 根据域名判断prefix
-    if (hostname === 'hrandom-pic.onani.cn' || hostname === 'api-hrandom-pic.onani.cn') {
+    if (hostname === 'hpic.072103.xyz' || hostname === 'api-hpic.072103.xyz') {
       prefix = 'ri/h/';
-    } else if (hostname === 'vrandom-pic.onani.cn' || hostname === 'api-vrandom-pic.onani.cn') {
+    } else if (hostname === 'vpic.072103.xyz' || hostname === 'api-vpic.072103.xyz') {
       prefix = 'ri/v/';
     } else {
       return new Response('Invalid domain', { status: 400 });
@@ -218,4 +218,4 @@ bucket_name = "114514"
 ### **通过使用 HTML 的 `<img>` 标签引用即可达到开头的效果**
 
 如：`<img src="你的域名" alt="">`
-<img title="" src="https://hrandom-pic.onani.cn" alt="loading-ag-4760">
+<img title="" src="https://hpic.072103.xyz" alt="loading-ag-4760">
