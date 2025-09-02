@@ -78,7 +78,7 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "状态",
-			url: "https://ss.2x.nz/", // Internal links should not include the base path, as it is automatically added
+			url: "https://acofork-uptime.zeabur.app/status/acofork", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
