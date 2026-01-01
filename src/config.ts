@@ -80,12 +80,7 @@ export const navBarConfig: NavBarConfig = {
 			name: "统计",
 			url: "https://umami.acofork.com/share/CdkXbGgZr6ECKOyK", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
-		},
-				{
-			name: "监控",
-			url: "https://eoddos.2x.nz", // Internal links should not include the base path, as it is automatically added
-			external: true, // Show an external link icon and will open in a new tab
-		},
+		}
 	],
 };
 
