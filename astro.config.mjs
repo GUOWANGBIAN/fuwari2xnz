@@ -39,6 +39,10 @@ export default defineConfig({
 	trailingSlash: "always",
 	output: "static",
 	redirects: {
+		"/privacy-policy": {
+			status: 302,
+			destination: "https://blog.acofork.com/posts/privacy-policy/",
+		},
 		"/long": {
 			status: 302,
 			destination: "https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in/",
