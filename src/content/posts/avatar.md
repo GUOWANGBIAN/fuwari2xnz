@@ -53,12 +53,13 @@ lang: ""
 您应该做的事情稍微有些复杂，如将API放到Cookie（登录，非游客权限）中，并且让后端处理Cookie的发放与吊销。就像微软那样
 
 又或者说，您只想要用户仅能通过浏览器单独查看图片，而不让 **任何人（包括您）** 引用图片到网站中，您可以使用 **Accept 请求头** 白名单，您可以尝试比较一下这两个 **Accept 请求头** ，前者是直接访问图片浏览器自动发送的，而后者是引用时发送的
-```
-image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
-```
 
 ```
 text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+```
+
+```
+image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
 ```
 
 最后，如果您想做到图片必须是 **游客访问** ，又不想让他人滥用。很抱歉，目前做不到，如果您担心资费问题，应当将图片这类静态资产放到各大Pages上提供，而不是按量计费的对象存储等服务，从根源上保护您的钱包
