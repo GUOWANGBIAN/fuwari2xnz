@@ -1,12 +1,14 @@
 ---
-title: 为任何站点对接Giscus并且配置反垃圾！
+title: 你是否在寻找一个评论系统而又不想自托管？又饱受垃圾评论的叨扰？
 published: 2025-08-04
-description: '你是否在寻找一个评论系统而又不想自托管？又饱受垃圾评论的叨扰？'
-image: '../assets/images/2025-08-04-12-14-21-image.webp'
-tags: [Giscus, 评论区]
-category: '教程'
-draft: false 
-lang: ''
+description: Giscus就是这样一个很好的评论区，它基于Github Discussion，无需自托管，无需你管理账号，仅需引入一个JS即可用！
+image: ../assets/images/2025-08-04-12-14-21-image.webp
+tags:
+  - Giscus
+  - 评论区
+category: 教程
+draft: false
+lang: ""
 ---
 
 # 配置Giscus
@@ -34,6 +36,20 @@ lang: ''
 - title：只要你换**标题**了，评论和页面就无法匹配
 
 ![](../assets/images/2025-08-04-12-18-21-image.webp)
+
+**需要特别注意的是**：建议 **勾选** `使用严格的标题匹配` ，**避免评论串台**。开启后，Giscus会根据你选择的映射关系为每一个新的Discussion（新的页面的评论区）插入一个与众不同的 *sha1 指纹* 。之后的页面评论区与Github Discussion的映射关系都依赖这个哈希字符串，它在每一个Discussion的正文中，以注释形式写入
+
+![](../assets/images/giscus-akismet-1.png)
+
+如果你弄丢了或者写错了，Giscus之后将会再创建一个同名的Discussion，并写入正确的哈希
+
+若旧Discussion并未删除，并想让Giscus命中一个不同的Discussion，你需要根据Giscus默认分配的页面标题（这取决于你上面勾选的映射关系，若勾选pathname，即为 `posts/pin` ）手动用 *sha1* 算法算出哈希字符串并手动写入你想要让Giscus映射的Discussion
+
+```sql
+root@AcoFork-NAS:~# echo -n "posts/pin/" | sha1sum
+6ae1aef4a17c896d06677a8e55c23b364bb82bbb  -
+root@AcoFork-NAS:~#
+```
 
 分类推荐选择 **公告（announcements）**
 
