@@ -6,6 +6,7 @@ import Markdown from "@components/misc/Markdown.astro";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
 import { getDir, getPostUrlBySlug } from "@utils/url-utils";
+import { getPostHistory, getCommitUrl } from "@utils/git-history";
 import { Icon } from "astro-icon/components";
 import { gitHubEditConfig, licenseConfig } from "src/config";
 import PostMetadata from "../../components/PostMeta.astro";
@@ -25,6 +26,9 @@ const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
+
+const filePath = path.join(process.cwd(), "src/content/posts", entry.id);
+const history = getPostHistory(filePath);
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -157,6 +161,36 @@ const jsonLd = {
                                 </a>
                             </div>
                         </div>
+
+                        <!-- 修订历史 -->
+                        {history.length > 0 && (
+                            <div class="flex items-start gap-3 mt-4">
+                                <div class="h-5 w-5 rounded bg-[var(--primary)] flex items-center justify-center">
+                                    <Icon name="material-symbols:history-rounded" class="text-[0.875rem] text-white dark:text-black/70"></Icon>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-black/80 dark:text-white/80 text-sm mb-1">文章修订历史 ({history.length} 次)</p>
+                                    <details class="group">
+                                        <summary class="cursor-pointer text-sm text-[var(--primary)] font-medium hover:underline select-none">
+                                            查看变更记录
+                                        </summary>
+                                        <div class="mt-2 space-y-2 max-h-48 overflow-y-auto custom-scrollbar">
+                                            {history.map(commit => (
+                                                <div class="flex flex-col text-xs bg-black/5 dark:bg-white/5 p-2 rounded">
+                                                    <div class="flex justify-between items-center mb-1">
+                                                        <span class="font-bold text-black/70 dark:text-white/70">{formatDateToYYYYMMDD(new Date(commit.date))}</span>
+                                                        <a href={getCommitUrl(commit.hash)} target="_blank" class="text-[var(--primary)] hover:underline font-mono">
+                                                            {commit.hash.substring(0, 7)}
+                                                        </a>
+                                                    </div>
+                                                    <p class="text-black/60 dark:text-white/60 break-all">{commit.message}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </details>
+                                </div>
+                            </div>
+                        )}
                     </>
                 )}
             </div>
