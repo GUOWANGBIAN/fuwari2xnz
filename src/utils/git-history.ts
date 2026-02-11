@@ -7,7 +7,6 @@ export interface Commit {
   hash: string;
   date: string;
   message: string;
-  author: string;
 }
 
 export function getPostHistory(postId: string): Commit[] {
