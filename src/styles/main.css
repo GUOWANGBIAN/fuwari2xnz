@@ -97,11 +97,11 @@
         mask-image: linear-gradient(to bottom, transparent 0%, black 2rem, black calc(100% - 2rem), transparent 100%);
     }
 
-    .hide-scrollbar {
+    .hide-scrollbar, .scrollbar-none {
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
-    .hide-scrollbar::-webkit-scrollbar {
+    .hide-scrollbar::-webkit-scrollbar, .scrollbar-none::-webkit-scrollbar {
         display: none;
     }
 
